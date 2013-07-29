@@ -141,40 +141,66 @@ Andrew Asman
 \end{comment}
 
 \section{Introduction}
-Multi-atlas 
-Using a common set of ``voters'' allows a more
-direct comparison of the segmentation/fusion methods that are at the
-heart of this challenge.   
+Several early papers in image registration / segmentation focus on 
+clinical applications including microscopy, nuclear medicine, tracking longitudinal
+change and angiography
+\cite{Badran1991,Venot1986,Venot1984,Wrigley1982,Adair1981}.  Rapid progress in registration
+theory and implementation followed these early developments with
+focus, in general, on either similarity metrics \cite{Wells1996},
+transformation models \cite{Miller2005} or the combination of these in a general
+purpose method \cite{Rueckert1999}.  More recently, as the core technology of segmentation and
+registration mature, the research focus has returned to clinical
+applications in radiation therapy \cite{Chan2013}, drug discovery \cite{Fox2009} and
+neurosurgery \cite{Omara2013} as well as in subject-specific image-based
+biomarkers \cite{Loggia2013}.  
 
-``in order to isolate the benefits of specific label fusion algorithms we need to have a standardized registration''
+An additional marker of progress is that biomedical
+image registration and segmentation are becoming relevant across
+fields such as veterinary medicine \cite{Harmon2013} and cardiology
+\cite{Veress2013}) as well as in automated analysis of large datasets
+such as ADNI \cite{Weiner2012} that cannot be processed ``by hand.''
+These new problem domains are revealing the limitations of traditional
+methods.  Brain registration methods, for instance, often assume that
+a single reference space / template is adequate to combine information
+across a population and that there exists, roughly, a diffeomorphism
+between any pair of individual brains.  Segmentation methods, on the
+other hand, often assume that intensity and object smoothness or
+texture encode the shape to be segmented or that a single model object
+is sufficient to act as a prior.  These assumptions may not
+hold when imaging other organs or in emerging MR modalities.  
 
-The Insight ToolKit began a major refactoring effort in 2010.
-The refactoring aimed to both simplify and extend the techniques available in version
-3.x with methods and ideas from a new set of prior work
-\cite{Jenkinson2001,Christensen1996,Rueckert1999,Miller2005,Peyrat2010,Avants2011}.
-To make this technology more accessible, \tk unifies the dense
-registration framework (displacement field, diffeomorphisms)
-with the low-dimensional (B-Spline, Affine, rigid) framework by
-introducing composite transforms, deformation field transforms and
-specializations that allowed these to be optimized efficiently.  A sub-goal set for \tk was to simplify
-parameter setting by adding helper methods that use well-known
-principles of image registration to automatically scale transform
-components and set optimization parameters.  \tk transforms are also
-newly applicable to objects such as vectors and tensors and will take into account covariant geometry if
-necessary.  Finally, \tk reconfigures the registration framework
-to use multi-threading in as many locations as possible.
-The revised registration framework within ITK is more thoroughly
-integrated across transform models, is thread-safe and provides
-broader functionality than in prior releases. 
+Multi-atlas segmentation and registration (MASR) methods help overcome
+the limitations associated with mapping to a single template or using
+a single exemplar segmentation.  These methods encode the notion that
+different topology or image contrast may exist between different
+subjects and, further, that the user cannot know these subjects {\em a
+priori}.  In this case, the problem is to develop algorithms that
+automatically adjust for registration accuracy at both global and
+local scales and determine segmentation labels that incorporate
+confidence.  MASR therefore enables applications that do not depend upon
+successful pair-wise registration between all subjects, a goal that is
+currently beyond the reach of any general purpose registration tool.
 
-
+The organizers of the SATA 2013 challenge provided datasets that
+frame, with specific examples, the issues raised above.  The
+organizers wrote on May 10, 2013 ``in order to isolate the benefits of
+specific label fusion algorithms we need to have a standardized
+registration.''  The ANTs development team agreed to collaborate to
+provide a set of standard registration results for the challenge.  We
+felt that our participation was important due to the variety of the challenge
+data, the fact that not all entrants are biomedical image registration
+experts and the results of SATA 2012 which suggested that a common
+transformation basis set would help isolate the differences between
+the segmentation component in MASR.  In other words, using a common
+set of ``voters'' allows a more direct comparison of the
+segmentation/fusion methods that are currently at the heart of the
+SATA challenge.
 
 
 \section{Challenge Data}
- For this year's challenge we are considering 3 datasets:
-(1) A diencephalon (mid-brain) dataset
-(2) A canine leg dataset
-(3) A cardiac atlas dataset
+Three MRI datasets provide the driving biological problems for the 2013
+challenge: a single modality diencephalon (mid-brain) dataset, a
+multi-modality canine leg dataset and a 4D cardiac atlas dataset.  
 
 From my perspective, I think that the mid-brain and canine leg datasets would not be terribly difficult to achieve consistent correspondence across the images. However, the cardiac atlas dataset might be significantly more challenging due to the way in which the images are acquired (i.e.,wildly varying orientations and fields-of-view).
 

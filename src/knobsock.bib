@@ -1,4 +1,4 @@
-% This file was created with JabRef 2.7.
+% This file was created with JabRef 2.8.1.
 % Encoding: ISO8859_1
 
 @ARTICLE{2004,
@@ -70,6 +70,33 @@
   timestamp = {2012.01.30}
 }
 
+@ARTICLE{Adair1981,
+  author = {Adair, T. and Karp, P. and Stein, A. and Bajcsy, R. and Reivich,
+	M.},
+  title = {Technical note. Computer assisted analysis of tomographic images
+	of the brain.},
+  journal = {J Comput Assist Tomogr},
+  year = {1981},
+  volume = {5},
+  pages = {929--932},
+  number = {6},
+  month = {Dec},
+  abstract = {A computer system for the analysis of computed tomography and positron
+	emission tomography scans of the brain is described. The system,
+	called TOAP (Tomographic Overlay and Analysis Program), permits the
+	registration of user specified slices from a digital brain atlas
+	with the tomographic images. Regions of interest can then be defined
+	with respect to the atlas. The system thus affords an objective and
+	reproducible means for the analysis of tomographic images.},
+  keywords = {Brain, radiography/radionuclide imaging; Humans; Tomography, Emission-Computed,
+	methods; Tomography, X-Ray Computed, methods},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pmid = {6976361},
+  timestamp = {2013.07.29}
+}
+
 @ARTICLE{Avants2011,
   author = {Avants, Brian B. and Tustison, Nicholas J. and Song, Gang and Cook,
 	Philip A. and Klein, Arno and Gee, James C.},
@@ -123,6 +150,41 @@
   timestamp = {2012.01.30}
 }
 
+@ARTICLE{Badran1991,
+  author = {Badran, A. K. and Fisher, A. C. and Durrani, T. S. and Paul, J. P.},
+  title = {An automatic matching technique for patient alignment.},
+  journal = {J Biomed Eng},
+  year = {1991},
+  volume = {13},
+  pages = {281--286},
+  number = {4},
+  month = {Jul},
+  abstract = {An automatic system of patient alignment is required in order to
+	monitor changes that occur in the period between magnetic resonance
+	scans. For each scan of the patient a prime requisite is to register
+	the images with respect to each other. The orthogonal relationship
+	between the sagittal and transverse images should, in principle,
+	identify a single common line at the intersection of the two image
+	planes. The basis of the comparison requires spatial registration
+	of the two images to correct for the probable translational and rotational
+	tilts as well as for the geometrical and intensity distortions. This
+	paper describes a number of automatic techniques which compare, pixel-by-pixel,
+	first two synthetic images, and then their application to real images
+	obtained separately from the same head and neck object field. The
+	robustness, computational cost and effectiveness of the techniques
+	presented are discussed, and computed results on real data for the
+	most promising technique based on the Ratio Absolute Difference algorithm
+	are presented.},
+  institution = {Bioengineering Unit, University of Strathclyde, Glasgow, Scotland.},
+  keywords = {Algorithms; Fourier Analysis; Humans; Image Processing, Computer-Assisted,
+	methods; Magnetic Resonance Imaging, methods},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pmid = {1890822},
+  timestamp = {2013.07.29}
+}
+
 @ARTICLE{Baloch2009,
   author = {Baloch, Sajjad and Davatzikos, Christos},
   title = {Morphological appearance manifolds in computational anatomy: groupwise
@@ -133,7 +195,6 @@
   pages = {S73--S85},
   number = {1 Suppl},
   month = {Mar},
-  __markedentry = {[stnava:]},
   abstract = {Existing approaches to computational anatomy assume that a perfectly
 	conforming diffeomorphism applied to an anatomy of interest captures
 	its morphological characteristics relative to a template. However,
@@ -235,6 +296,78 @@
   pages = {1116-1119},
   owner = {stnava},
   timestamp = {2012.01.30}
+}
+
+@ARTICLE{Chan2013,
+  author = {Chan, Mark K H. and Kwong, Dora L W. and Ng, Sherry C Y. and Tong,
+	Anthony S M. and Tam, Eric K W.},
+  title = {Experimental evaluations of the accuracy of 3D and 4D planning in
+	robotic tracking stereotactic body radiotherapy for lung cancers.},
+  journal = {Med Phys},
+  year = {2013},
+  volume = {40},
+  pages = {041712},
+  number = {4},
+  month = {Apr},
+  abstract = {Due to the complexity of 4D target tracking radiotherapy, the accuracy
+	of this treatment strategy should be experimentally validated against
+	established standard 3D technique. This work compared the accuracy
+	of 3D and 4D dose calculations in respiration tracking stereotactic
+	body radiotherapy (SBRT).Using the 4D planning module of the CyberKnife
+	treatment planning system, treatment plans for a moving target and
+	a static off-target cord structure were created on different four-dimensional
+	computed tomography (4D-CT) datasets of a thorax phantom moving in
+	different ranges. The 4D planning system used B-splines deformable
+	image registrations (DIR) to accumulate dose distributions calculated
+	on different breathing geometries, each corresponding to a static
+	3D-CT image of the 4D-CT dataset, onto a reference image to compose
+	a 4D dose distribution. For each motion, 4D optimization was performed
+	to generate a 4D treatment plan of the moving target. For comparison
+	with standard 3D planning, each 4D plan was copied to the reference
+	end-exhale images and a standard 3D dose calculation was followed.
+	Treatment plans of the off-target structure were first obtained by
+	standard 3D optimization on the end-exhale images. Subsequently,
+	they were applied to recalculate the 4D dose distributions using
+	DIRs. All dose distributions that were initially obtained using the
+	ray-tracing algorithm with equivalent path-length heterogeneity correction
+	(3D EPL and 4D EPL) were recalculated by a Monte Carlo algorithm
+	(3D MC and 4D MC) to further investigate the effects of dose calculation
+	algorithms. The calculated 3D EPL, 3D MC, 4D EPL, and 4D MC dose
+	distributions were compared to measurements by Gafchromic EBT2 films
+	in the axial and coronal planes of the moving target object, and
+	the coronal plane for the static off-target object based on the ?
+	metric at 5\%/3mm criteria (?5\%/3mm). Treatment plans were considered
+	acceptable if the percentage of pixels passing ?5\%/3mm (P?<1) ?
+	90\%.The averaged P?<1 values of the 3D EPL, 3D MC, 4D EPL, and 4D
+	MC dose calculation methods for the moving target plans are 95\%,
+	95\%, 94\%, and 95\% for reproducible motion, and 95\%, 96\%, 94\%,
+	and 93\% for nonreproducible motion during actual treatment delivery.
+	The overall measured target dose distributions are in better agreement
+	with the 3DMC dose distributions than the 4DMC dose distributions.
+	Conversely, measured dose distributions agree much better with the
+	4D EPL/MC than the 3D EPL/MC dose distributions in the static off-target
+	structure, resulting in higher P?<1 values with 4D EPL/MC (91\%)
+	vs 3D EPL (24\%) and 3D MC (25\%). Systematic changes of target motion
+	reduced the averaged P?<1 to 47\% and 53\% for 4D EPL and 4D MC dose
+	calculations, and 22\% for 3D EPL/MC dose calculations in the off-target
+	films.In robotic tracking SBRT, 4D treatment planning was found to
+	yield better prediction of the dose distributions in the off-target
+	structure, but not necessarily in the moving target, compared to
+	standard 3D treatment planning, for reproducible and nonreproducible
+	target motion. It is important to ensure on a patient-by-patient
+	basis that the cumulative uncertainty associated with the 4D-CT artifacts,
+	deformable image registration, and motion variability is significantly
+	smaller than the cumulative uncertainty occurred in standard 3D planning
+	in order to make 4D planning a justified option.},
+  doi = {10.1118/1.4794505},
+  institution = {Department of Clinical Oncology, The University of Hong Kong, Tuen
+	Mun Hospital, Hong Kong Special Administrative Region. ckh456@ha.org.hk},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pmid = {23556882},
+  timestamp = {2013.07.29},
+  url = {http://dx.doi.org/10.1118/1.4794505}
 }
 
 @ARTICLE{Chen2008,
@@ -479,6 +612,99 @@
   timestamp = {2012.01.30http://dx.doi.org/10.1016/j.cmpb.2007.04.009}
 }
 
+@ARTICLE{Fox2009,
+  author = {Fox, Gerard B. and Chin, Chih-Liang and Luo, Feng and Day, Mark and
+	Cox, Bryan F.},
+  title = {Translational neuroimaging of the CNS: novel pathways to drug development.},
+  journal = {Mol Interv},
+  year = {2009},
+  volume = {9},
+  pages = {302--313},
+  number = {6},
+  month = {Dec},
+  abstract = {Scientists engaged in drug discovery and development face many critical
+	issues along the road to identifying the best drug candidates to
+	bring forward for testing in patients. In neuroscience, these challenges
+	can involve particularly demanding questions regarding target engagement,
+	the predict ability of endpoints in animal models, new disease model
+	validation, CNS penetration, and the identification of pharmacodynamic
+	markers. For neurological conditions such as Alzheimer's disease,
+	clinical trials of novel drugs that may modify the course of disease,
+	rather than targeting specific symptoms, add extra layers of complexity.
+	Major studies designed to track the course of a disease increasingly
+	depend on noninvasive, translational imaging. In this brief review,
+	we highlight examples of the new wave of neuroimaging studies that
+	engender useful biomarkers of disease for translational research.},
+  doi = {10.1124/mi.9.6.6},
+  institution = {Global Pharmaceutical Research and Development, Abbott Laboratories,
+	Abbott Park, IL 60064.},
+  keywords = {Animals; Central Nervous System, radiography; Diagnostic Techniques,
+	Neurological; Humans; Image Processing, Computer-Assisted, methods;
+	Magnetic Resonance Imaging, methods; Nervous System Diseases, drug
+	therapy/pathology; Positron-Emission Tomography, methods; Tomography,
+	Emission-Computed, Single-Photon, methods},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pii = {9/6/302},
+  pmid = {20048136},
+  timestamp = {2013.07.29},
+  url = {http://dx.doi.org/10.1124/mi.9.6.6}
+}
+
+@ARTICLE{Harmon2013,
+  author = {Harmon, Jr, Joseph and Yoshikawa, Hiroto and Custis, James and Larue,
+	Susan},
+  title = {Evaluation of canine prostate intrafractional motion using serial
+	cone beam computed tomography imaging.},
+  journal = {Vet Radiol Ultrasound},
+  year = {2013},
+  volume = {54},
+  pages = {93--98},
+  number = {1},
+  __markedentry = {[stnava:]},
+  abstract = {This study used kilovoltage (kV) cone beam computed tomography (CBCT)
+	imaging to characterize canine intrafractional prostate motion during
+	hypofractionated stereotactic radiotherapy treatment. Serial CBCT
+	images taken just prior to initiating treatment, and at several times
+	during the treatment session, were acquired throughout the course
+	of treatment for canine patients. All patients were immobilized in
+	dorsal recumbency while using an air-inflated rectal balloon. For
+	each treatment session, rigid registration of intrafraction CBCT
+	images with the interfraction CBCT used for setup verification was
+	performed. Contours of the prostate and urethra were drawn on each
+	CBCT image set and the center of mass for each structure was evaluated
+	as a function of time. A total of seven canine patients was included
+	in the study, resulting in 41 CBCT images collected during a total
+	of 12 treatment sessions. Over 70\% of our data were collected for
+	CBCTs taken between 20 and 51 min after final patient setup was complete.
+	The mean intrafraction movement in a single direction for the prostate
+	and urethra was ?0.14 mm and ?0.22 mm, respectively. The maximum
+	intrafraction movement for the prostate and urethra was ? 1.60 mm
+	and ? 2.00 mm, respectively. The maximum variability in intrafraction
+	movement for the prostate and urethra, as defined by two standard
+	deviations, was ?1.40 mm and ?1.50 mm, respectively. Minimal intrafraction
+	variability using appropriate patient positioning and rectal balloon,
+	combined with kV CBCT image-guided radiation therapy tools to account
+	for interfraction changes, permit accurate and precise targeting
+	of structures of interest.},
+  doi = {10.1111/j.1740-8261.2012.01986.x},
+  institution = {Bon Secours Cancer Institute, Richmond Radiation Oncology Center,
+	Henrico, VA, USA. joseph_harmon@bshsi.org},
+  keywords = {Animals; Cone-Beam Computed Tomography, methods/veterinary; Dog Diseases,
+	radiography/surgery; Dogs; Humans; Immobilization; Male; Patient
+	Positioning, veterinary; Prostate, radiography; Prostatic Neoplasms,
+	radiography/surgery/veterinary; Radiosurgery, methods/veterinary;
+	Radiotherapy Setup Errors, prevention /\&/ control; Radiotherapy,
+	Image-Guided, instrumentation/methods; Urethra, radiography},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pmid = {22963200},
+  timestamp = {2013.07.29},
+  url = {http://dx.doi.org/10.1111/j.1740-8261.2012.01986.x}
+}
+
 @ARTICLE{hermosillo,
   author = {G. Hermosillo and C. Chefd'Hotel and O. Faugeras},
   title = {A variational approach to multi-modal image matching},
@@ -530,7 +756,6 @@
   pages = {143--156},
   number = {2},
   month = {Jun},
-  __markedentry = {[stnava:6]},
   abstract = {Registration is an important component of medical image analysis
 	and for analysing large amounts of data it is desirable to have fully
 	automatic registration methods. Many different automatic registration
@@ -675,6 +900,64 @@
   timestamp = {2012.01.30http://dx.doi.org/10.1109/TMI.2009.2035616}
 }
 
+@ARTICLE{Loggia2013,
+  author = {Loggia, Marco L. and Kim, Jieun and Gollub, Randy L. and Vangel,
+	Mark G. and Kirsch, Irving and Kong, Jian and Wasan, Ajay D. and
+	Napadow, Vitaly},
+  title = {Default mode network connectivity encodes clinical pain: an arterial
+	spin labeling study.},
+  journal = {Pain},
+  year = {2013},
+  volume = {154},
+  pages = {24--33},
+  number = {1},
+  month = {Jan},
+  abstract = {Neuroimaging studies have suggested the presence of alterations in
+	the anatomo-functional properties of the brain of patients with chronic
+	pain. However, investigation of the brain circuitry supporting the
+	perception of clinical pain presents significant challenges, particularly
+	when using traditional neuroimaging approaches. While potential neuroimaging
+	markers for clinical pain have included resting brain connectivity,
+	these cross-sectional studies have not examined sensitivity to within-subject
+	exacerbation of pain. We used the dual regression probabilistic Independent
+	Component Analysis approach to investigate resting-state connectivity
+	on arterial spin labeling data. Brain connectivity was compared between
+	patients with chronic low back pain (cLBP) and healthy controls,
+	before and after the performance of maneuvers aimed at exacerbating
+	clinical pain levels in the patients. Our analyses identified multiple
+	resting state networks, including the default mode network (DMN).
+	At baseline, patients demonstrated stronger DMN connectivity to the
+	pregenual anterior cingulate cortex (pgACC), left inferior parietal
+	lobule, and right insula (rINS). Patients' baseline clinical pain
+	correlated positively with connectivity strength between the DMN
+	and right insula (DMN-rINS). The performance of calibrated physical
+	maneuvers induced changes in pain, which were paralleled by changes
+	in DMN-rINS connectivity. Maneuvers also disrupted the DMN-pgACC
+	connectivity, which at baseline was anticorrelated with pain. Finally,
+	baseline DMN connectivity predicted maneuver-induced changes in both
+	pain and DMN-rINS connectivity. Our results support the use of arterial
+	spin labeling to evaluate clinical pain, and the use of resting DMN
+	connectivity as a potential neuroimaging biomarker for chronic pain
+	perception.},
+  doi = {10.1016/j.pain.2012.07.029},
+  institution = {Department of Anesthesiology, Perioperative and Pain Medicine, Brigham
+	and Women's Hospital, Harvard Medical School (HMS), Boston, MA, USA.
+	marco@nmr.mgh.harvard.edu},
+  keywords = {Adult; Cerebral Cortex, anatomy /\&/ histology/physiology; Chronic
+	Pain, pathology/physiopathology; Connectome, methods; Female; Humans;
+	Low Back Pain, pathology/physiopathology; Magnetic Resonance Imaging,
+	methods; Male; Middle Aged; Neural Pathways, anatomy /\&/ histology/physiopathology;
+	Neuralgia, pathology/physiopathology; Pain Perception, physiology;
+	Psychophysics; Spin Labels},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pii = {S0304-3959(12)00456-3},
+  pmid = {23111164},
+  timestamp = {2013.07.29},
+  url = {http://dx.doi.org/10.1016/j.pain.2012.07.029}
+}
+
 @ARTICLE{Metz2011,
   author = {Metz, C. T. and Klein, S. and Schaap, M. and {van Walsum}, T. and
 	Niessen, W. J.},
@@ -801,6 +1084,66 @@
   owner = {stnava},
   pmid = {21632295},
   timestamp = {2012.01.30http://dx.doi.org/10.1109/TMI.2011.2158349}
+}
+
+@ARTICLE{Nielsen1997,
+  author = {Nielsen, Mads and Florack, Luc and Deriche, Rachid},
+  title = {Regularization, Scale-Space, and Edge Detection Filters},
+  journal = {J. Math. Imaging Vis.},
+  year = {1997},
+  volume = {7},
+  pages = {291--307},
+  month = {October},
+  address = {Norwell, MA, USA},
+  issn = {0924-9907},
+  keywords = {edge detection filters, linear filtering, recursive filtering, regularization,
+	scale invariance, scale-space},
+  numpages = {17},
+  publisher = {Kluwer Academic Publishers}
+}
+
+@ARTICLE{Omara2013,
+  author = {Omara, Akram I. and Wang, Manning and Fan, Yifeng and Song, Zhijian},
+  title = {Anatomical landmarks for point-matching registration in image-guided
+	neurosurgery.},
+  journal = {Int J Med Robot},
+  year = {2013},
+  month = {Jun},
+  abstract = {BACKGROUND: Accurate patient to image registration is the core for
+	successful image-guided neurosurgery. While skin adhesive markers
+	(SMs) are widely used in point-matching registration, a proper implementation
+	of anatomical landmarks (ALs) may overcome the inconvenience brought
+	by the use of SMs. METHODS: Using nine ALs, a set of three configurations
+	of different combinations of them is proposed. These configurations
+	are defined according to the required positioning of the patient's
+	head during surgery and the resulting distribution of the expected
+	target registration error (TRE). These configurations were first
+	evaluated by simulation experiment using the data of 20 patients
+	from two hospitals, and then testing the applicability of them in
+	eight real clinical surgeries of neuronavigation. RESULTS: The results
+	of the simulation experiment showed that, by incorporating a fiducial
+	registration error (FRE) of 3.5 mm measured in the clinical setting,
+	the expected TRE in the whole skull was less than 2.5 mm, and the
+	expected TRE in the whole brain was less than 1.75 mm when using
+	all the nine ALs. A small TRE could also be achieved in the corresponding
+	surgical field by using the other three configurations with less
+	ALs. In the clinical experiment, the FLE ranges in the image and
+	the patient space were 1.4-3.6 mm and 1.6-5.5 mm, respectively. The
+	measured TRE and FRE were 3.1?±?0.75 mm and 3.5?±?0.17 mm, respectively.
+	CONCLUSIONS: The AL configurations proposed in this investigation
+	provide sufficient registration accuracy and can help to avoid the
+	disadvantages of SMs if used clinically. Copyright © 2013 John Wiley
+	\& Sons, Ltd.},
+  doi = {10.1002/rcs.1509},
+  institution = {Digital Medical Research Center of Shanghai Medical College, Fudan
+	University, Shanghai, and Shanghai Key Laboratory of Medical Image
+	Computing and Computer Assisted Intervention, Shanghai, China.},
+  language = {eng},
+  medline-pst = {aheadofprint},
+  owner = {stnava},
+  pmid = {23733606},
+  timestamp = {2013.07.29},
+  url = {http://dx.doi.org/10.1002/rcs.1509}
 }
 
 @ARTICLE{Peyrat2010,
@@ -940,22 +1283,6 @@
   timestamp = {2012.01.30http://dx.doi.org/10.1016/j.media.2005.04.011}
 }
 
-@article{Nielsen1997,
- address              = {Norwell, MA, USA},
- author               = {Nielsen, Mads and Florack, Luc and Deriche, Rachid},
- issn                 = {0924-9907},
- journal              = {J. Math. Imaging Vis.},
- keywords             = {edge detection filters, linear filtering, recursive filtering, regularization, scale invariance, scale-space},
- month                = {October},
- numpages             = {17},
- pages                = {291--307},
- publisher            = {Kluwer Academic Publishers},
- title                = {Regularization, Scale-Space, and Edge Detection Filters},
- volume               = {7},
- year                 = {1997}
- }
-
-
 @ARTICLE{Taka2011,
   author = {Taka, Senate Johannes and Srinivasan, Subhadra},
   title = {NIRViz: 3D visualization software for multimodality optical imaging
@@ -1002,6 +1329,73 @@
   timestamp = {2012.01.30http://dx.doi.org/10.1007/s10278-011-9362-5}
 }
 
+@ARTICLE{Venot1984,
+  author = {Venot, A. and Leclerc, V.},
+  title = {Automated correction of patient motion and gray values prior to subtraction
+	in digitized angiography.},
+  journal = {IEEE Trans Med Imaging},
+  year = {1984},
+  volume = {3},
+  pages = {179--186},
+  number = {4},
+  abstract = {This paper deals with an automated method for the simultaneous correction
+	of patient motion and gray values prior to subtraction in digitized
+	angiography. The algorithm consists of maximizing the deterministic
+	sign change (DSC) criterion with respect to three registration parameters
+	(two translational shifts and one constant value added to the pixel
+	values of the image with contrast medium). This method is proved
+	to be very efficient to correct for patient motion artifacts and
+	is computationally cheap. Its main advantage is to permit the use
+	of regions of interest which include vascular structures for the
+	registration procedure. This method can be proposed for a routine
+	use on every commercial digitized angiographic system.},
+  doi = {10.1109/TMI.1984.4307678},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pmid = {18234627},
+  timestamp = {2013.07.29},
+  url = {http://dx.doi.org/10.1109/TMI.1984.4307678}
+}
+
+@ARTICLE{Venot1986,
+  author = {Venot, A. and Liehn, J. C. and Lebruchec, J. F. and Roucayrol, J.
+	C.},
+  title = {Automated comparison of scintigraphic images.},
+  journal = {J Nucl Med},
+  year = {1986},
+  volume = {27},
+  pages = {1337--1342},
+  number = {8},
+  month = {Aug},
+  abstract = {New algorithms for automated comparison of scintigraphic images have
+	been developed and are described here. The first step presented here
+	is the registration of the images, performed by optimizing, with
+	respect to the registration parameters (two translational shifts,
+	one angle of rotation, the two parameters of a linear transformation
+	of the gray levels), the stochastic sign change (SSC) criterion.
+	The optimization of this criterion is demonstrated to be efficiently
+	performed using the adaptative random search strategy; a more limited
+	but less time-consuming method is also presented. The second step
+	described is the point-by-point comparison of the registered images.
+	The pixel-by-pixel application of Poisson variable statistical tests
+	permits the generation of the significant image differences. From
+	such images it is possible to detect modifications which escape visual
+	inspection. Examples of applications are given in controlled and
+	routine conditions. These algorithms are useful for the processing
+	of many investigations and are proposed for implementation on all
+	nuclear medicine data processing systems.},
+  keywords = {Automatic Data Processing; Bone and Bones, radionuclide imaging;
+	Humans; Parathyroid Glands, radionuclide imaging; Radioisotopes,
+	diagnostic use; Radionuclide Imaging; Sodium Pertechnetate Tc 99m,
+	diagnostic use; Software; Thallium, diagnostic use},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pmid = {3016216},
+  timestamp = {2013.07.29}
+}
+
 @ARTICLE{Vercauteren2009,
   author = {Vercauteren, Tom and Pennec, Xavier and Perchant, Aymeric and Ayache,
 	Nicholas},
@@ -1038,6 +1432,178 @@
   pii = {S1053-8119(08)01168-3},
   pmid = {19041946},
   timestamp = {2012.01.30}
+}
+
+@ARTICLE{Veress2013,
+  author = {Veress, Alexander I. and Klein, Gregory and Gullberg, Grant T.},
+  title = {A Comparison of Hyperelastic Warping of PET Images with Tagged MRI
+	for the Analysis of Cardiac Deformation.},
+  journal = {Int J Biomed Imaging},
+  year = {2013},
+  volume = {2013},
+  pages = {728624},
+  __markedentry = {[stnava:6]},
+  abstract = {The objectives of the following research were to evaluate the utility
+	of a deformable image registration technique known as hyperelastic
+	warping for the measurement of local strains in the left ventricle
+	through the analysis of clinical, gated PET image datasets. Two normal
+	human male subjects were sequentially imaged with PET and tagged
+	MRI imaging. Strain predictions were made for systolic contraction
+	using warping analyses of the PET images and HARP based strain analyses
+	of the MRI images. Coefficient of determination R (2) values were
+	computed for the comparison of circumferential and radial strain
+	predictions produced by each methodology. There was good correspondence
+	between the methodologies, with R (2) values of 0.78 for the radial
+	strains of both hearts and from an R (2) = 0.81 and R (2) = 0.83
+	for the circumferential strains. The strain predictions were not
+	statistically different (P ? 0.01). A series of sensitivity results
+	indicated that the methodology was relatively insensitive to alterations
+	in image intensity, random image noise, and alterations in fiber
+	structure. This study demonstrated that warping was able to provide
+	strain predictions of systolic contraction of the LV consistent with
+	those provided by tagged MRI Warping.},
+  doi = {10.1155/2013/728624},
+  institution = {Department of Mechanical Engineering, University of Washington, Seattle
+	Washington, Stevens Way, P.O. Box 352600, Seattle, WA 98195, USA.},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pmid = {23843780},
+  timestamp = {2013.07.29},
+  url = {http://dx.doi.org/10.1155/2013/728624}
+}
+
+@ARTICLE{Walsh2008,
+  author = {Walsh, Colin T. and Wei, Yong and Wientjes, M Guillaume and Au, Jessie
+	L S.},
+  title = {Quantitative image analysis of intra-tumoral bFGF level as a molecular
+	marker of paclitaxel resistance.},
+  journal = {J Transl Med},
+  year = {2008},
+  volume = {6},
+  pages = {4},
+  abstract = {The role of basic fibroblast growth factor (bFGF) in chemoresistance
+	is controversial; some studies showed a relationship between higher
+	bFGF level and chemoresistance while other studies showed the opposite
+	finding. The goal of the present study was to quantify bFGF levels
+	in archived tumor tissues, and to determine its relationship with
+	chemosensitivity.We established an image analysis-based method to
+	quantify and convert the immunostaining intensity of intra-tumor
+	bFGF to concentrations; this was accomplished by generating standard
+	curves using human xenograft tumors as the renewable tissue source
+	for simultaneous image analysis and ELISA. The relationships between
+	bFGF concentrations and tumor chemosensitivity of patient tumors
+	(n = 87) to paclitaxel were evaluated using linear regression analysis.The
+	image analysis results were compared to our previous results obtained
+	using a conventional, semi-quantitative visual scoring method. While
+	both analyses indicated an inverse relationship between bFGF level
+	and tumor sensitivity to paclitaxel, the image analysis method, by
+	providing bFGF levels in individual tumors and therefore more data
+	points (87 numerical values as opposed to four groups of staining
+	intensities), further enabled the quantitative analysis of the relationship
+	in subgroups of tumors with different pathobiological properties.
+	The results show significant correlation between bFGF level and tumor
+	sensitivity to the antiproliferation effect, but not the apoptotic
+	effect, of paclitaxel. We further found stronger correlations of
+	bFGF level and paclitaxel sensitivity in four tumor subgroups (high
+	stage, positive p53 staining, negative aFGF staining, containing
+	higher-than-median bFGF level), compared to all other groups. These
+	findings suggest that the relationship between intra-tumoral bFGF
+	level and paclitaxel sensitivity was context-dependent, which may
+	explain the previous contradictory findings on the merit of using
+	plasma or urine bFGF level as a prognostic indicator.The present
+	study established a quantitative image analysis method that enabled
+	the measurement of intratumoral bFGF level in archived tissues. The
+	ability to quantify a potential biomarker provided the opportunity
+	to study the relationship between the biomarker and chemosensitivity
+	in tumor subgroups and thereby enabled hypothesis generation for
+	additional translational research.},
+  doi = {10.1186/1479-5876-6-4},
+  institution = {College of Pharmacy, The Ohio State University, 500 West 12th Avenue,
+	Columbus, OH, 43210, USA. ctwalsh@ucsd.edu},
+  keywords = {Animals; Antineoplastic Agents, Phytogenic, pharmacology; Cell Proliferation,
+	drug effects; Drug Resistance, Neoplasm; Enzyme-Linked Immunosorbent
+	Assay; Female; Fibroblast Growth Factor 2, analysis; HT29 Cells;
+	Humans; Image Processing, Computer-Assisted, methods; Immunohistochemistry;
+	Inhibitory Concentration 50; Male; Mice; Mice, SCID; Paclitaxel,
+	pharmacology; Pancreatic Neoplasms, pathology; Pharyngeal Neoplasms,
+	pathology; Prostatic Neoplasms, pathology; Sensitivity and Specificity;
+	Statistics as Topic; Tissue Culture Techniques; Tumor Cells, Cultured,
+	drug effects; Tumor Markers, Biological, analysis; Xenograft Model
+	Antitumor Assays},
+  language = {eng},
+  medline-pst = {epublish},
+  owner = {stnava},
+  pii = {1479-5876-6-4},
+  pmid = {18205918},
+  timestamp = {2013.07.29},
+  url = {http://dx.doi.org/10.1186/1479-5876-6-4}
+}
+
+@ARTICLE{Weiner2012,
+  author = {Weiner, Michael W. and Veitch, Dallas P. and Aisen, Paul S. and Beckett,
+	Laurel A. and Cairns, Nigel J. and Green, Robert C. and Harvey, Danielle
+	and Jack, Clifford R. and Jagust, William and Liu, Enchi and Morris,
+	John C. and Petersen, Ronald C. and Saykin, Andrew J. and Schmidt,
+	Mark E. and Shaw, Leslie and Siuciak, Judith A. and Soares, Holly
+	and Toga, Arthur W. and Trojanowski, John Q. and , Alzheimer?s Disease
+	Neuroimaging Initiative},
+  title = {The Alzheimer's Disease Neuroimaging Initiative: a review of papers
+	published since its inception.},
+  journal = {Alzheimers Dement},
+  year = {2012},
+  volume = {8},
+  pages = {S1--68},
+  number = {1 Suppl},
+  month = {Feb},
+  keywords = {Alzheimer Disease, classification/diagnosis; Biological Markers;
+	Early Diagnosis; Humans; Longitudinal Studies; Neuroimaging, methods/standards},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pmid = {22047634},
+  timestamp = {2013.07.29}
+}
+
+@ARTICLE{Wells1996,
+  author = {Wells, 3rd, WM and Viola, P. and Atsumi, H. and Nakajima, S. and
+	Kikinis, R.},
+  title = {Multi-modal volume registration by maximization of mutual information.},
+  journal = {Med Image Anal},
+  year = {1996},
+  volume = {1},
+  pages = {35--51},
+  number = {1},
+  month = {Mar},
+  abstract = {A new information-theoretic approach is presented for finding the
+	registration of volumetric medical images of differing modalities.
+	Registration is achieved by adjustment of the relative position and
+	orientation until the mutual information between the images is maximized.
+	In our derivation of the registration procedure, few assumptions
+	are made about the nature of the imaging process. As a result the
+	algorithms are quite general and can foreseeably be used with a wide
+	variety of imaging devices. This approach works directly with image
+	data; no pre-processing or segmentation is required. This technique
+	is, however, more flexible and robust than other intensity-based
+	techniques like correlation. Additionally, it has an efficient implementation
+	that is based on stochastic approximation. Experiments are presented
+	that demonstrate the approach registering magnetic resonance (MR)
+	images with computed tomography (CT) images, and with positron-emission
+	tomography (PET) images. Surgical applications of the registration
+	method are described.},
+  institution = {Harvard Medical School, Department of Radiology, Boston, MA, USA.
+	sw@ai.mit.edu},
+  keywords = {Brain Neoplasms, diagnosis/surgery; Brain, pathology; Computer Simulation;
+	Glioma, diagnosis/surgery; Humans; Information Theory; Magnetic Resonance
+	Imaging; Meningeal Neoplasms, diagnosis/surgery; Meningioma, diagnosis/surgery;
+	Reproducibility of Results; Tomography, Emission-Computed; Tomography,
+	X-Ray Computed},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pii = {S1361-8415(01)80004-9},
+  pmid = {9873920},
+  timestamp = {2013.07.29}
 }
 
 @ARTICLE{Wolf2005,
@@ -1090,6 +1656,35 @@
   pii = {S1361-8415(05)00034-4},
   pmid = {15896995},
   timestamp = {2012.01.30http://dx.doi.org/10.1016/j.media.2005.04.005}
+}
+
+@ARTICLE{Wrigley1982,
+  author = {Wrigley, N. G. and Chillingworth, R. K. and Brown, E. and Barrett,
+	A. N.},
+  title = {Multiple image integration: a new method in electron microscopy.},
+  journal = {J Microsc},
+  year = {1982},
+  volume = {127},
+  pages = {201--208},
+  number = {Pt 2},
+  month = {Aug},
+  abstract = {An optical 'flicker' method is described for the precise azimuthal
+	and translational co-registration of many noisy but identical molecular
+	images. Starting with a real micrograph of known biological objects
+	showing no visible detail below 4 nm, a lattice of images of individual
+	objects was synthesized by computer and translationally filtered,
+	using real experimental data throughout. Detail was recovered conforming
+	with known structural features of the object down to about 1.5 nm,
+	and rotational analysis showed that the registration accuracy of
+	the lattice elements was better than 0.5 nm on the object. Application
+	to the straightening of real two-dimensional lattices with long-range
+	distortion is discussed.},
+  keywords = {Animals; Cells, ultrastructure; Microscopy, Electron, instrumentation/methods},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pmid = {7120368},
+  timestamp = {2013.07.29}
 }
 
 @ARTICLE{Yoo2002,
