@@ -196,13 +196,12 @@ set of ``voters'' allows a more direct comparison of the
 segmentation/fusion methods that are currently at the heart of the
 SATA challenge.
 
-
-\section{Challenge Data}
-Three MRI datasets provide the driving biological problems for the 2013
-challenge: a single modality diencephalon (mid-brain) dataset, a
+Three MRI datasets provide the driving biological problems for the
+2013 challenge: a single modality diencephalon (mid-brain) dataset, a
 multi-modality canine leg dataset and a 4D cardiac atlas dataset.  
+We present, below, the ANTs techniques that address the unique hurdles as
+well as opportunities afforded by this diverse collection of images.
 
-From my perspective, I think that the mid-brain and canine leg datasets would not be terribly difficult to achieve consistent correspondence across the images. However, the cardiac atlas dataset might be significantly more challenging due to the way in which the images are acquired (i.e.,wildly varying orientations and fields-of-view).
 
 \section{Methods}
 
@@ -211,6 +210,10 @@ From my perspective, I think that the mid-brain and canine leg datasets would no
 \subsection{Dog Leg Multi-Modality Data}
 
 \subsection{CAP Cardiac Data}
+
+
+From my perspective, I think that the mid-brain and canine leg datasets would not be terribly difficult to achieve consistent correspondence across the images. However, the cardiac atlas dataset might be significantly more challenging due to the way in which the images are acquired (i.e.,wildly varying orientations and fields-of-view).
+
 \begin{figure}[t]
  \centering 
   \includegraphics[width=5in]{../figs/CAP_methods.pdf}
