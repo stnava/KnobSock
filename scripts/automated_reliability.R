@@ -17,6 +17,7 @@ hwf<-250
 # jpeg("rplot1.jpg", width = 10 * hwf, height = 10 * hwf)
 # pdf(fn)
 pvct<-0
+pvs<-rep(NA,length(all))
 for ( ct in 1:length(all) ) {
   img<-all[ct]
   tt<-paste("./output/ants_",img,"_*/ants_corr.txt",sep='')
@@ -32,6 +33,7 @@ for ( ct in 1:length(all) ) {
 #  relthresh<-( median(heartCorr,na.rm=T) - 1.0 * ole$rrms )
 #  print( sum( heartCorr<relthresh ,na.rm=T) / length(heartCorr )*100 )
   pv<-sf.test(heartCorr)$p.value
+  pvs[ct]<-pv
   print( paste(img,ct, pv, length(myc) ))
   if ( pv < 0.05 ) pvct<-pvct+1
 #  lines(density(heartCorr[heartCorr<relthresh] ,na.rm=T),col='blue')
@@ -56,3 +58,8 @@ palette(rainbow(12, s = 0.6, v = 0.75))
 stars(matres,draw.segments = TRUE,main='CAP Performance Variation',labels=sublabs,full=F)
 # stars(matres,draw.segments = TRUE,frame.plot=TRUE,scale = TRUE, radius  =  FALSE,main='Performance Variation')
 dev.off()
+#
+# > sum(p.adjust(pvs,method='BH') < 0.05 )
+# [1] 21
+# a minimum of 13.54839 % had a highly non-gaussian similarity distribution 
+#
