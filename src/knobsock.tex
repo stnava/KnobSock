@@ -203,7 +203,12 @@ We present, below, the ANTs techniques that address the unique hurdles as
 well as opportunities afforded by this diverse collection of images.
 
 
-\section{Methods}
+\section{Methods} 
+We processed all data with Advanced Normalization Tools ( github commit
+e3ba1c527fa63cc524bae7912b415d77adadc165 ) based on ITKv4.  The
+processing was organized with a combination of bash or perl scripts.
+The core methods are available in ANTs programs \texttt{antsRegistration}, \texttt{ImageMath} (utilities), \texttt{N4BiasFieldCorrection} (bias correction) and
+\texttt{Atropos} (segmentation).
 
 \subsection{Diencephalon/Brain Data}
 
@@ -224,8 +229,19 @@ From my perspective, I think that the mid-brain and canine leg datasets would no
 \begin{figure}[t]
  \centering 
   \includegraphics[width=5in]{../figs/spider_CAP.pdf}
- \caption{CAP methods}
- \label{fig:CAPmethods}
+ \caption{We visualize the variability in pairwise registration
+   performance for CAP data.  We quantified variability in
+   all 12,865 data points by measuring
+   the global correlation of the deformed image and the target image,
+   i.e. both training (labeled R$\star$) and testing (labeled E$\star$). ``Spiky''
+   distributions of the correlation function indicate that
+ a few pairings performed much better/worse than the majority, at
+ least at a global level.  This
+ was verified by testing the gaussianity of the resulting correlation
+ distribution.  As an example, the sixth subject from top left (E6) has a
+ highly non-gaussian distribution of similarity metric performance and
+results in a significant p-value for the non-gaussianity test ($p <$ 1.e-7 ).}
+ \label{fig:CAPvar}
 \end{figure}
 
 \section{Results}
