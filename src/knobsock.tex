@@ -89,7 +89,7 @@ easily addressed data requiring only 1,600 mappings between different
 3D human T1 neuroimages.  The 3D multiple modality MRI ``dog leg'' dataset ($>$ 7,000
 mappings) presented the opportunity to improve performance by using
 a multivariate similarity metric.  The 4D cardiac (or CAP) dataset
-($>$ 13,000 mappings) includes highly variable image quality, anatomy
+($\approx$ 13,000 mappings) includes highly variable image quality, anatomy
 and field of view.  We detail the ANTs variants that address the most basic brain dataset, where we used
 a template-based approach, to the more challenging CAP dataset which
 employed a more customized registration solution based on prior
@@ -221,6 +221,13 @@ From my perspective, I think that the mid-brain and canine leg datasets would no
 
 \begin{figure}[t]
  \centering 
+  \includegraphics[width=5in]{../figs/SATA_diencephalon.png}
+ \caption{Diencephalon methods}
+ \label{fig:DIEmethods}
+\end{figure}
+
+\begin{figure}[t]
+ \centering 
   \includegraphics[width=5in]{../figs/CAP_methods.pdf}
  \caption{CAP methods}
  \label{fig:CAPmethods}
@@ -240,7 +247,9 @@ From my perspective, I think that the mid-brain and canine leg datasets would no
  was verified by testing the gaussianity of the resulting correlation
  distribution.  As an example, the sixth subject from top left (E6) has a
  highly non-gaussian distribution of similarity metric performance and
-results in a significant p-value for the non-gaussianity test ($p <$ 1.e-7 ).}
+results in a significant p-value for the non-gaussianity test ($p <$
+1.e-7 ).  Overall, 13.5\% of subjects exhibited non-gaussian
+distributions for this function, after multiple comparisons correction by false discovery rate.}
  \label{fig:CAPvar}
 \end{figure}
 
