@@ -131,7 +131,12 @@ https://masi.vuse.vanderbilt.edu/workshop2013/index.php/SATA_Data_Registration_F
 (2) A canine leg dataset
 (3) A cardiac atlas dataset
 
-From my perspective, I think that the mid-brain and canine leg datasets would not be terribly difficult to achieve consistent correspondence across the images. However, the cardiac atlas dataset might be significantly more challenging due to the way in which the images are acquired (i.e.,wildly varying orientations and fields-of-view).
+ ``From my perspective, I think that the mid-brain and canine leg
+  datasets would not be terribly difficult to achieve consistent
+  correspondence across the images. However, the cardiac atlas dataset
+  might be significantly more challenging due to the way in which the
+  images are acquired (i.e.,wildly varying orientations and
+  fields-of-view).'' ---{\em SATA Organizers}
 
 We would greatly appreciate your help for making this challenge as successful as possible. If you have any questions/comments/concerns please do not hesitate to bring them up.
 
@@ -149,16 +154,12 @@ theory and implementation followed these early developments with
 focus, in general, on either similarity metrics \cite{Wells1996},
 transformation models \cite{Miller2005} or the combination of these in a general
 purpose method \cite{Rueckert1999}.  More recently, as the core technology of segmentation and
-registration mature, the research focus has returned to clinical
-applications in radiation therapy \cite{Chan2013}, drug discovery \cite{Fox2009} and
-neurosurgery \cite{Omara2013} as well as in subject-specific image-based
-biomarkers \cite{Loggia2013}.  
-
-An additional marker of progress is that biomedical
-image registration and segmentation are becoming relevant across
-fields such as veterinary medicine \cite{Harmon2013} and cardiology
-\cite{Veress2013}) as well as in automated analysis of large datasets
+registration mature, the research focus has returned to specific clinical
+applications such as radiation therapy \cite{Chan2013}, drug discovery \cite{Fox2009},
+neurosurgery \cite{Omara2013} and image-based biomarkers of pain \cite{Loggia2013}.  
+Quantitative image mapping is also relied upon heavily for automated analysis of large datasets
 such as ADNI \cite{Weiner2012} that cannot be processed ``by hand.''
+
 These new problem domains are revealing the limitations of traditional
 methods.  Brain registration methods, for instance, often assume that
 a single reference space / template is adequate to combine information
@@ -181,12 +182,11 @@ confidence.  MASR therefore enables applications that do not depend upon
 successful pair-wise registration between all subjects, a goal that is
 currently beyond the reach of any general purpose registration tool.
 
-The organizers of the SATA 2013 challenge provided datasets that
+The organizers of the SATA 2013 challenge collected datasets that
 frame, with specific examples, the issues raised above.  The
 organizers wrote on May 10, 2013 ``in order to isolate the benefits of
 specific label fusion algorithms we need to have a standardized
-registration.''  The ANTs development team agreed to collaborate to
-provide a set of standard registration results for the challenge.  We
+registration.''  The ANTs development team agreed to collaborate on a set of standard registration results for the challenge.  We
 felt that our participation was important due to the variety of the challenge
 data, the fact that not all entrants are biomedical image registration
 experts and the results of SATA 2012 which suggested that a common
@@ -194,30 +194,53 @@ transformation basis set would help isolate the differences between
 the segmentation component in MASR.  In other words, using a common
 set of ``voters'' allows a more direct comparison of the
 segmentation/fusion methods that are currently at the heart of the
-SATA challenge.
-
-Three MRI datasets provide the driving biological problems for the
-2013 challenge: a single modality diencephalon (mid-brain) dataset, a
-multi-modality canine leg dataset and a 4D cardiac atlas dataset.  
-We present, below, the ANTs techniques that address the unique hurdles as
-well as opportunities afforded by this diverse collection of images.
-
+SATA challenge. We present,
+below, the ANTs techniques that address the unique hurdles as well as
+opportunities afforded by this diverse collection of images.
 
 \section{Methods} 
-We processed all data with Advanced Normalization Tools ( github commit
-e3ba1c527fa63cc524bae7912b415d77adadc165 ) based on ITKv4.  The
-processing was organized with a combination of bash or perl scripts.
-The core methods are available in ANTs programs \texttt{antsRegistration}, \texttt{ImageMath} (utilities), \texttt{N4BiasFieldCorrection} (bias correction) and
-\texttt{Atropos} (segmentation).
+Three MRI datasets constitute the driving biological problems for the
+2013 challenge: T1-weighted whole head images of the diencephalon
+(mid-brain), multi-modality T1 and T2 canine leg images and a 4D
+cardiac atlas dataset.  The SATA organizers requested that we provide
+transformed label sets and intensity images for all
+training$\leftrightarrow$testing and training$\leftrightarrow$training
+pairs.  The registration goal was to map the images with ``reasonable
+and consistent'' peformance and an open-source system.  
+
+We processed all data with Advanced Normalization Tools ( github
+commit e3ba1c527fa63cc524bae7912b415d77adadc165 ) based on ITKv4.  The
+processing was organized with a combination of bash or perl scripts
+and run through standard Sun Grid Engine distributed computing.
+The core methods are available in ANTs programs
+\texttt{antsRegistration}, \texttt{ImageMath} (utilities),
+\texttt{N4BiasFieldCorrection} (bias correction) and \texttt{Atropos}
+(segmentation).  These core tools are described in archived
+publications \cite{}.  However, we employed several new additions to
+ANTs that are as recent as 2013 and which are based upon our work for
+version 4 of the Insight ToolKit.  Furthermore, we will illustrate the
+SATA implementations with reproducible examples.
 
 \subsection{Diencephalon/Brain Data}
-
+ \begin{quote}
+ ``... the mid-brain and canine leg
+  datasets should not be terribly difficult ...'' ---{\em SATA Organizers}
+\end{quote}
+ 
 \subsection{Dog Leg Multi-Modality Data}
 
 \subsection{CAP Cardiac Data}
+The CAP dataset is more challenging than the other two and includes a volumetric time series of the beating heart. 
 
-
-From my perspective, I think that the mid-brain and canine leg datasets would not be terribly difficult to achieve consistent correspondence across the images. However, the cardiac atlas dataset might be significantly more challenging due to the way in which the images are acquired (i.e.,wildly varying orientations and fields-of-view).
+ \begin{quote}
+  `` ... the cardiac atlas dataset
+  might be significantly more challenging due to the way in which the
+  images are acquired (i.e.,wildly varying orientations and
+  fields-of-view) ... I wouldnt be surprised if getting `reasonable' \& `consistent' registrations for this data is difficult or impossible.'' ---{\em SATA Organizers}
+\end{quote}
+ 
+\noindent The organizers also requested that the output labels be
+consistent with the original 4D manual labels.  
 
 \begin{figure}[t]
  \centering 
@@ -263,11 +286,22 @@ distributions for this function, after multiple comparisons correction by false 
 We estimated a failure rate of X\% on this data  .... look at
 histogram of correlation 
 
-\section{Discussion}
+\section{Discussion} The processing decisions that we made in the
+standard registration suggest several possible outcomes.  For
+instance, our pseudo-geodesic approach focusing on the whole brain
+should be suboptimal for the the diencephalon data. Entrants that
+choose to perform pairwise registration between all subjects should
+find better performance than the standard approach.
 
 The cardiac dataset reveals some of the limitations involved with naive
 pair-wise registration and highlights the benefit of
 problem-specific strategies and multi-atlas methods.  
+
+The CAP data comes with some caveats.  It is unclear how well the
+intra-subject alignment performs.  At the same time, the intra-rater
+variability in labeling the time series in unknown; at first glance,
+it would be difficult to consistently label the myocardium in 3D over
+several dozen or more time frames. 
 
 \bibliographystyle{splncs}
 \bibliography{knobsock}
