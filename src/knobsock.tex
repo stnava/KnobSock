@@ -208,18 +208,31 @@ training$\leftrightarrow$testing and training$\leftrightarrow$training
 pairs.  The registration goal was to map the images with ``reasonable
 and consistent'' peformance and an open-source system.  
 
-We processed all data with Advanced Normalization Tools ( git
-commit e3ba1c527fa63cc524bae7912b415d77adadc165 ) based on ITKv4.  The
+We processed all data with Advanced Normalization Tools ( git commit
+e3ba1c527fa63cc524bae7912b415d77adadc165 ) based on ITKv4.  The
 processing was organized with a combination of bash or perl scripts
-and run through standard Sun Grid Engine distributed computing.
-The core methods are available in ANTs programs
-\texttt{antsRegistration}, \texttt{ImageMath} (utilities),
-\texttt{N4BiasFieldCorrection} (bias correction) and \texttt{Atropos}
-(segmentation).  These core tools are described in archived
-publications \cite{}.  However, we employed several new additions to
-ANTs that are as recent as 2013 and which are based upon our work for
-version 4 of the Insight ToolKit.  Furthermore, we will illustrate the
-SATA implementations with reproducible examples.
+and run through standard Sun Grid Engine distributed computing.  The
+core methods are available in ANTs programs \texttt{antsRegistration},
+\texttt{ImageMath} (utilities), \texttt{N4BiasFieldCorrection} (bias
+correction) and \texttt{Atropos} (segmentation).  These core tools are
+described in archived publications
+\cite{Tustison2010,Avants2011a,Avants2011}.  However, we employed
+several new additions to ANTs registration that are as recent as 2013
+and which are based upon our work for version 4 of the Insight
+ToolKit. 
+
+\subsection{The (Fire) ANTs System} ANTs fundamentals involve pairwise
+registration of images defined in physical space.  ANTs registrations,
+as of 2013 with the Fire beta, are defined by an initial transformation (possibly the
+identity) of the ``fixed'' and/or ``moving'' images.  This is followed
+by a series of registration stages typically with increasing degrees
+of freedom.  Each stage begins with $k$ similarity metric definitions
+(most often $k=1$) and is followed by parameters defining the
+multi-resolution strategy.  Subsequent stages may be added in the same
+style.  Finally, ANTs takes options controlling optimization details
+and pre/post-processing.  Application-specific choices should be made
+for the transformation, similarity metrics and multi-resolution
+strategy.  A variety of options are exercised in SATA processing.
 
 \subsection{Diencephalon/Brain Data (SATA-B)}
  \begin{quote}
@@ -229,19 +242,20 @@ SATA implementations with reproducible examples.
 \begin{figure}[t]
  \centering 
   \includegraphics[width=3.5in]{../figs/SATA_diencephalon.png}
- \caption{Diencephalon methods}
- \label{fig:DIEmethods}
+ \caption{SATA-B registrations map every image to every other image
+   through the optimal template space (available online).  This
+   requires only $n$ registrations rather than $n^2$.}
+ \label{fig:Bmethods}
 \end{figure}
-Nick Tustison led the diencephalon challenge processing.  We employed
-an efficient ``pseudo-geodesic'' processing strategy for this data to
+We employed an efficient ``pseudo-geodesic'' processing strategy for this data to
 avoid explicitly computing $\approx$1,600 image registration
-instances.  As was shown in previous work (technical report), this
+instances, as shown in Figure~\ref{fig:Bmethods}.  As was shown in previous work (technical report), this
 strategy improves upon single template labeling while approaching (not
 equaling) the more computationally expensive all-pairs
 registration required by standard MASR.
 
 We first derive a custom whole-head template for this dataset and
-extract the template cerebrum using MASR and LPBA40 labels \cite{}.
+extract the template cerebrum using MASR and LPBA40 labels \cite{Shattuck2008}.
 We then extract the cerebrum from the individual SATA-B images based
 on existing ANTs software (\texttt{extractBrainAllSubjects.pl}) for
 template-based brain mapping.  We then re-registered the individual
@@ -249,17 +263,29 @@ cerebrum images to the template cerebrum
 (\texttt{runSyNRegistrations.pl}).  The subject $n$ to template
 mapping composes with the inverse of the subject $m$ to template
 mapping to create the final mapping between subject $n$ and subject $m$.
-The affine and deformable components of the SATA-B maps derive from standard \texttt{antsRegistration} parameters.
+The affine and deformable components of the SATA-B maps derive from
+standard \texttt{antsRegistration} parameters.  
  
 \subsection{Dog Leg Multi-Modality Data (SATA-L)}
-Hongzhi Wang led the SATA-L data processing.  The input modalities are
-bias corrected by N4 \cite{} before further processing (\texttt{normalization.sh}).  ANTs
+\begin{figure}[t]
+ \centering 
+  \includegraphics[width=3.5in]{../figs/canine-leg-registration.png}
+ \caption{The SATA-L registration is similar to SATA-B.  However, the
+image similarity is driven by the mutual information applied to both
+modalities.  We chose to treat both modalities equally except for one
+small detail---one of the modalities is rigidly registered,
+intra-subject, to the other before proceeding with inter-subject
+registration.}
+ \label{fig:Lmethods}
+\end{figure}
+The input modalities are
+bias corrected by N4 \cite{Tustison2010} before further processing (\texttt{normalization.sh}).  ANTs
 registration employs both modalities provided for SATA-L.  We did not
 know the relative contribution of each modality to accuracy so set
 equal weights.  The affine and deformable components of the SATA-L
 maps derive from a multivariate extension to standard
 \texttt{antsRegistration} parameters.  That is, we use the standard
-multi-resolution affine approach combiend with SyN but drive both
+multi-resolution affine approach combined with SyN but drive both
 transformation stages by the sum of mutual information across both
 modalities.  More specifically, for affine registration, we optimize:
 \begin{eqnarray}
@@ -269,24 +295,24 @@ w_2 MI(  I_2(\psi_I(x)) , J_2( \psi_J(\phi(x)) ) ) \notag \\
 \end{eqnarray}
 where $w_1=w_2=0.5$ and $\psi_J$ rigidly maps $J_2$ to $J_1$
 (similarly $\psi_I$).  The script \texttt{align.sh} shows how to
-compute $\psi$.  We use a similar model for SyN deformable mapping (\texttt{registerPairsMod.sh}).  Note that
+compute $\psi$.  We use the same multivariate metric for SyN deformable mapping (\texttt{registerPairsMod.sh}).  Note that
 \texttt{antsRegistration} allows initial mappings to be provided thus
 reducing accumulation of interpolation error.  Five percent regular
-subsampling of the joint intensities estimates the mutual information.
+subsampling of the joint intensities estimates the mutual information
+metric and metric derivative.
 % FIXME --- are $I_1$ and $I_2$ in alignment?
 
 \subsection{CAP Cardiac Data (SATA-C)}
 The CAP dataset is more challenging than the other two and includes a volumetric time series of the beating heart:
-
  \begin{quote}
-  `` ... the cardiac atlas dataset
-  might be significantly more challenging due to the way in which the
-  images are acquired (i.e.,wildly varying orientations and
-  fields-of-view) ... I wouldnt be surprised if getting `reasonable' \& `consistent' registrations for this data is difficult or impossible.'' ---{\em SATA Organizers}
+  `` ... I wouldnt be surprised if getting `reasonable' \& `consistent' registrations for this data is difficult or impossible.'' ---{\em SATA Organizers}
 \end{quote}
- 
 \noindent The dataset indeed proves to be challenging to process with
-a general purpose toolkit like ANTs.  
+a general purpose toolkit like ANTs.  Our procedure is illustrated
+with example data in 
+\url{https://github.com/stnava/LabelMyHeart} \footnote{May not be the
+  exact scripts used due to a few last minute changes stored on the
+  distributed computing system.}
 
 \begin{figure}[t]
  \centering 
