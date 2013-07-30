@@ -208,7 +208,7 @@ training$\leftrightarrow$testing and training$\leftrightarrow$training
 pairs.  The registration goal was to map the images with ``reasonable
 and consistent'' peformance and an open-source system.  
 
-We processed all data with Advanced Normalization Tools ( github
+We processed all data with Advanced Normalization Tools ( git
 commit e3ba1c527fa63cc524bae7912b415d77adadc165 ) based on ITKv4.  The
 processing was organized with a combination of bash or perl scripts
 and run through standard Sun Grid Engine distributed computing.
@@ -221,16 +221,57 @@ ANTs that are as recent as 2013 and which are based upon our work for
 version 4 of the Insight ToolKit.  Furthermore, we will illustrate the
 SATA implementations with reproducible examples.
 
-\subsection{Diencephalon/Brain Data}
+\subsection{Diencephalon/Brain Data (SATA-B)}
  \begin{quote}
  ``... the mid-brain and canine leg
   datasets should not be terribly difficult ...'' ---{\em SATA Organizers}
 \end{quote}
- 
-\subsection{Dog Leg Multi-Modality Data}
+\begin{figure}[t]
+ \centering 
+  \includegraphics[width=3.5in]{../figs/SATA_diencephalon.png}
+ \caption{Diencephalon methods}
+ \label{fig:DIEmethods}
+\end{figure}
+Nick Tustison led the diencephalon challenge processing.  We employed
+an efficient ``pseudo-geodesic'' processing strategy for this data to
+avoid explicitly computing $\approx$1,600 image registration
+instances.  As was shown in previous work (technical report), this
+strategy improves upon single template labeling while approaching (not
+equaling) the more computationally expensive all-pairs
+registration required by standard MASR.
 
-\subsection{CAP Cardiac Data}
-The CAP dataset is more challenging than the other two and includes a volumetric time series of the beating heart. 
+We first derive a custom whole-head template for this dataset and
+extract the template cerebrum using MASR and LPBA40 labels \cite{}.
+We then extract the cerebrum from the individual SATA-B images based
+on existing ANTs software (\texttt{extractBrainAllSubjects.pl}) for
+template-based brain mapping.  We then re-registered the individual
+cerebrum images to the template cerebrum
+(\texttt{runSyNRegistrations.pl}).  The subject $n$ to template
+mapping composes with the inverse of the subject $m$ to template
+mapping to create the final mapping between subject $n$ and subject $m$.
+The affine and deformable components of the SATA-B maps derive from standard \texttt{antsRegistration} parameters.
+ 
+\subsection{Dog Leg Multi-Modality Data (SATA-L)}
+Hongzhi Wang led the SATA-L data processing.  ANTs employs both
+modalities provided for SATA-L.  We did not know the relative
+contribution of each modality to registration accuracy so set equal weights
+for each.   The affine and deformable components of the SATA-L maps
+derive from a multivariate extension to standard
+\texttt{antsRegistration} parameters.  That is, we use the standard
+multi-resolution affine approach combiend with SyN but drive both
+transformation stages by the sum of mutual information across both
+modalities.  More specifically, for affine registration, we optimize: 
+\begin{eqnarray}
+MI(  I_1 , J_1( \phi(x) ) ) +
+MI(  I_2(\psi_I(x)) , J_2( \psi_J(\phi(x)) ) ) \notag \\ 
+\text{Subject to:}~\phi \in Diff_\text{Affine},
+\end{eqnarray}
+where $\psi_J$ maps $J_2$ to $J_1$ (similarly $\psi_I$).
+A similar model is used for SyN deformable mapping. 
+% FIXME --- are $I_1$ and $I_2$ in alignment?
+
+\subsection{CAP Cardiac Data (SATA-C)}
+The CAP dataset is more challenging than the other two and includes a volumetric time series of the beating heart:
 
  \begin{quote}
   `` ... the cardiac atlas dataset
@@ -239,15 +280,8 @@ The CAP dataset is more challenging than the other two and includes a volumetric
   fields-of-view) ... I wouldnt be surprised if getting `reasonable' \& `consistent' registrations for this data is difficult or impossible.'' ---{\em SATA Organizers}
 \end{quote}
  
-\noindent The organizers also requested that the output labels be
-consistent with the original 4D manual labels.  
-
-\begin{figure}[t]
- \centering 
-  \includegraphics[width=5in]{../figs/SATA_diencephalon.png}
- \caption{Diencephalon methods}
- \label{fig:DIEmethods}
-\end{figure}
+\noindent The dataset indeed proves to be challenging to process with
+a general purpose toolkit like ANTs.  
 
 \begin{figure}[t]
  \centering 
@@ -259,7 +293,7 @@ consistent with the original 4D manual labels.
 \begin{figure}[t]
  \centering 
   \includegraphics[width=5in]{../figs/spider_CAP.pdf}
- \caption{We visualize the variability in pairwise registration
+ \caption{We use urchin plots to visualize pairwise registration
    performance for CAP data.  We quantified variability in
    all 12,865 data points by measuring
    the global correlation of the deformed image and the target image,
@@ -293,15 +327,16 @@ should be suboptimal for the the diencephalon data. Entrants that
 choose to perform pairwise registration between all subjects should
 find better performance than the standard approach.
 
-The cardiac dataset reveals some of the limitations involved with naive
-pair-wise registration and highlights the benefit of
-problem-specific strategies and multi-atlas methods.  
-
-The CAP data comes with some caveats.  It is unclear how well the
-intra-subject alignment performs.  At the same time, the intra-rater
-variability in labeling the time series in unknown; at first glance,
-it would be difficult to consistently label the myocardium in 3D over
-several dozen or more time frames. 
+The cardiac dataset reveals some of the limitations involved with
+naive pair-wise registration and highlights the benefit of
+problem-specific strategies and multi-atlas methods.  We believe that,
+of the 3 datasets, the biggest future performance gains may be
+possible in this type of data.  While the organizers requested that
+the output labels be consistent with the original 4D manual labels,
+the intra-rater variability in labeling the time series in unknown; at
+first glance, it would seem difficult to consistently label the
+myocardium in 3D over several dozen or more time frames.  Therefore,
+the upper limits on accuracy remain unclear.
 
 \bibliographystyle{splncs}
 \bibliography{knobsock}
