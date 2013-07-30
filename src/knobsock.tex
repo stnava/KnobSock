@@ -67,8 +67,9 @@
 \title{Standardized Registration Methods for the SATA Challenge Datasets}
 \author{Brian B. Avants$^1$, Nicholas J. Tustison$^2$, Hongzhi
   Wang$^1$ \\and the
-  $^5$\href{http://www.insightsoftwareconsortium.org/}{Insight Software Consortium}\\
-$^1$Penn Image Computing and Science Lab \\ Dept. of Radiology \\University of
+  $^5$\href{http://www.insightsoftwareconsortium.org/}{Insight
+    Software Consortium}}
+\institute{$^1$Penn Image Computing and Science Lab \\ Dept. of Radiology \\University of
   Pennsylvania, Philadelphia, PA, 19104\\ 
   $^2$Dept. of Radiology and Medical Imaging, \\ University of Virginia,
   Charlottesville, VA 22903\\
@@ -83,7 +84,7 @@ standardized registration that enables entrants to use the same
 mappings as input to competing algorithms.  We therefore collaborated
 to provide, within a relatively brief window of time, over 22,000
 registration results based on Advanced Normalization Tools
-(\href{http://stnava.github.io/ANTs/}{ANTs link}).
+(\url{http://stnava.github.io/ANTs/}).
 The diencephalon component of the challenge presented familiar and
 easily addressed data requiring only 1,600 mappings between different
 3D human T1 neuroimages.  The 3D multiple modality MRI ``dog leg'' dataset ($>$ 7,000
@@ -96,7 +97,7 @@ employed a more customized registration solution based on prior
 knowledge.  The scripts, source code and a small set of example data
 accompany this paper and are available online.  
 \footnote{This work is supported by National Library of Medicine sponsored ARRA stimulus
-funding.}
+funding. Resources for this report are here \href{https://github.com/stnava/KnobSock}{(link)}.}
 \end{abstract}
 
 \begin{comment}
@@ -198,15 +199,14 @@ SATA challenge. We present,
 below, the ANTs techniques that address the unique hurdles as well as
 opportunities afforded by this diverse collection of images.
 
-\section{Methods} 
-Three MRI datasets constitute the driving biological problems for the
-2013 challenge: T1-weighted whole head images of the diencephalon
-(mid-brain), multi-modality T1 and T2 canine leg images and a 4D
-cardiac atlas dataset.  The SATA organizers requested that we provide
-transformed label sets and intensity images for all
+\section{Methods} Three MRI datasets constitute the driving biological
+problems for the 2013 challenge: T1-weighted whole head images of the
+diencephalon (mid-brain), multi-modality T1 and T2 canine leg images
+and a 4D cardiac atlas dataset.  The SATA organizers requested that we
+provide transformed label sets and intensity images for all
 training$\leftrightarrow$testing and training$\leftrightarrow$training
 pairs.  The registration goal was to map the images with ``reasonable
-and consistent'' peformance and an open-source system.  
+and consistent'' performance and an open-source system.
 
 We processed all data with Advanced Normalization Tools ( git commit
 e3ba1c527fa63cc524bae7912b415d77adadc165 ) based on ITKv4.  The
@@ -219,7 +219,7 @@ described in archived publications
 \cite{Tustison2010,Avants2011a,Avants2011}.  However, we employed
 several new additions to ANTs registration that are as recent as 2013
 and which are based upon our work for version 4 of the Insight
-ToolKit. 
+ToolKit.
 
 \subsection{The (Fire) ANTs System} ANTs fundamentals involve pairwise
 registration of images defined in physical space.  ANTs registrations,
@@ -264,7 +264,8 @@ cerebrum images to the template cerebrum
 mapping composes with the inverse of the subject $m$ to template
 mapping to create the final mapping between subject $n$ and subject $m$.
 The affine and deformable components of the SATA-B maps derive from
-standard \texttt{antsRegistration} parameters.  
+standard \texttt{antsRegistration} parameters.  The template is
+available in the \texttt{data/SATA-B-Template/} directory.
  
 \subsection{Dog Leg Multi-Modality Data (SATA-L)}
 \begin{figure}[t]
@@ -280,7 +281,7 @@ registration.}
 \end{figure}
 The input modalities are
 bias corrected by N4 \cite{Tustison2010} before further processing (\texttt{normalization.sh}).  ANTs
-registration employs both modalities provided for SATA-L.  We did not
+registration employs both modalities provided for SATA-L as in Figure~\ref{fig:Lmethods}.  We did not
 know the relative contribution of each modality to accuracy so set
 equal weights.  The affine and deformable components of the SATA-L
 maps derive from a multivariate extension to standard
@@ -303,22 +304,51 @@ metric and metric derivative.
 % FIXME --- are $I_1$ and $I_2$ in alignment?
 
 \subsection{CAP Cardiac Data (SATA-C)}
-The CAP dataset is more challenging than the other two and includes a volumetric time series of the beating heart:
+The CAP dataset includes a volumetric time series of the beating heart:
  \begin{quote}
-  `` ... I wouldnt be surprised if getting `reasonable' \& `consistent' registrations for this data is difficult or impossible.'' ---{\em SATA Organizers}
+  `` ... I wouldn't be surprised if getting `reasonable' \& `consistent' registrations for this data is difficult or impossible.'' ---{\em SATA Organizers}
 \end{quote}
-\noindent The dataset indeed proves to be challenging to process with
-a general purpose toolkit like ANTs.  Our procedure is illustrated
-with example data in 
-\url{https://github.com/stnava/LabelMyHeart} \footnote{May not be the
-  exact scripts used due to a few last minute changes stored on the
-  distributed computing system.}
+\noindent A significant confound is the out-of-plane spacing which is
+approximately 6 times that of in-plane spacing.  Other challenges
+include significant variability in the anatomical field-of-view and
+orientation, the resolution/dimensions of the images, the image
+intensity pattern/bias and in the shape/appearance of the myocardium
+(the target anatomy) with respect to the remainder of the anatomy.
+The dataset indeed proves to be challenging to process with a general
+purpose toolkit like ANTs.  Our procedure is illustrated with example
+data in \url{https://github.com/stnava/LabelMyHeart}. \footnote{May
+not be the exact scripts used due to a few last minute changes stored
+on the distributed computing system.}
 
+The processing occurs in two steps. The first is {\em within-subject}
+and creates a single-subject template and label image by combining the
+time series MRI and labelset.  We achieve this by
+\texttt{makeSubjectTemplate.sh} which extracts every time point,
+averages the time points, and registers all time points to the average
+with a simple SyN registration based on intensity difference.  The
+single-subject template label is estimated by majority voting (in
+\texttt{ImageMath}).  The second step is {\em between-subject} and
+exploits the fact that a training image is involved in every
+registration pairing.  We use the label within the training image to
+focus the registration optimization in the region of the heart.  This
+strategy effectively increases the robustness of the registration to
+the presence of inhomogeneity, altered field-of-view and anatomical
+variation not relevant to the myocardium labeling problem.  Other
+details are in \texttt{betweenSubjectsMap.sh} with perhaps the key
+step being \texttt{ -x [ \${outnm}mask.nii.gz   ] } which focuses
+the registration optimization within the mask, as defined by
+morphological operations on the training image myocardium labeling, as
+in Figure~\ref{fig:Cmethods}.  Training labels are mapped back to the
+4D space by composing the between subject map with the inverse of the
+initial single subject template SyN mappings.  A data-driven
+soft-evaluation of the performance is in Figure~\ref{fig:CAPvar}. 
 \begin{figure}[t]
  \centering 
-  \includegraphics[width=5in]{../figs/CAP_methods.pdf}
- \caption{CAP methods}
- \label{fig:CAPmethods}
+  \includegraphics[width=4.5in]{../figs/CAP_methods.pdf}
+ \caption{CAP methods focus the registration within a dilated version
+of the training image myocardium labeling.  Restricting the
+registration focus improves robustness to extra-cardiac features.}
+ \label{fig:Cmethods}
 \end{figure}
 
 \begin{figure}[t]
@@ -341,33 +371,77 @@ distributions for this function, after multiple comparisons correction by false 
  \label{fig:CAPvar}
 \end{figure}
 
-\section{Results}
+\section{Discussion} 
+The methods described above were informed by experience, the limited
+allotted time for processing and the methods available,
+contemporaneously, within ANTs, Fire beta.  The ANTs system is
+intended to be available to the community such that our results may be
+reproduced/extended and improved by the community.  OSX and LINUX are
+most actively supported with occasional support for Windows.  The
+processing decisions that we made in the standard registration suggest
+several possible outcomes and future work, discussed below.  
 
-\subsection{Diencephalon/Brain Data}
+\subsection{Diencephalon/Brain Data (SATA-B)} The most familiar
+problem of the three presented few difficulties.  We did, however,
+elect to extract the cerebrum from each image in order to better focus
+the results on relevant image features, a strategy that is similar to
+that used in the CAP data.  Despite this approach, our pseudo-geodesic
+focused on the whole brain should be suboptimal for the diencephalon
+data. Entrants that choose to either perform pairwise registration
+between all subjects or focus the registration on the diencephalon
+should find better performance than the standard approach.  We expect
+that entrants should find Dice overlap that is consistent with previous challenges.
 
-\subsection{Dog Leg Multi-Modality Data}
+\subsection{Dog Leg Multi-Modality Data (SATA-L)}
+We employed very little problem-specific optimization for the SATA-L
+registration.  It did, however, allow us to test whether two
+modalities jointly improve registration results.  Based on a
+comparison of single-modality registration and dual modality
+registration in the training data, we found the dual modality
+similarity metric appeared to increase performance.  We expect that
+Dice overlap will be reasonable ($\approx 0.8$ overall as estimated by
+H.W.) for the canine leg dataset.
 
-\subsection{CAP Cardiac Data}
-We estimated a failure rate of X\% on this data  .... look at
-histogram of correlation 
-
-\section{Discussion} The processing decisions that we made in the
-standard registration suggest several possible outcomes.  For
-instance, our pseudo-geodesic approach focusing on the whole brain
-should be suboptimal for the the diencephalon data. Entrants that
-choose to perform pairwise registration between all subjects should
-find better performance than the standard approach.
-
+\subsection{CAP Cardiac Data (SATA-C)}
 The cardiac dataset reveals some of the limitations involved with
 naive pair-wise registration and highlights the benefit of
 problem-specific strategies and multi-atlas methods.  We believe that,
 of the 3 datasets, the biggest future performance gains may be
-possible in this type of data.  While the organizers requested that
-the output labels be consistent with the original 4D manual labels,
-the intra-rater variability in labeling the time series in unknown; at
-first glance, it would seem difficult to consistently label the
-myocardium in 3D over several dozen or more time frames.  Therefore,
-the upper limits on accuracy remain unclear.
+possible in this type of data.  Figure~\ref{fig:CAPvar} suggests that,
+for some subjects, particular pairings provide a much better matching
+than the majority of pairings.  We tested this hypothesis by looking
+at the non-gaussianity of the global correlation between the
+registered image pairs as calculated within the target subject space.
+After FDR-correction, this test suggested that 13.5\% of subjects had
+a highly non-gaussian similarity distribution.  For these individuals,
+a small portion of training images provide a reasonable result while
+the majority might be classified as failures.  This accentuates the
+importance of MASR schemes that are robust to high failure rate input
+data or the need to cluster the populations before MASR.  While the
+organizers requested that the output labels be consistent with the
+original 4D manual labels, the intra-rater variability in labeling the
+time series is unknown; at first glance, it would seem difficult to
+consistently label the myocardium in 3D over several dozen or more
+time frames.  Therefore, the upper limits on accuracy remain unclear.
+However, we estimated that, with the standard registration, entrants
+should achieve up to average Dice overlap of 0.6 to 0.7 as estimated by H.W.  
+
+\section{Conclusions}
+Open challenges provide crucial benchmarks to the biomedical image
+analysis field and we are honored to play a role in this process.  The
+organizers shared excellent challenge data with the community that
+should yield exciting results that will advance both
+image registration and image segmentation technology.  In particular,
+these datasets bring into focus the importance of multiple modality
+data, other organ systems and even other species, as well as efficient
+registration solutions and the need for MASR methods that are robust
+to input data with low reliability.  The SATA data engaged ANTs mean
+squared intensity difference, cross-correlation and multivariate
+mutual information metrics along with the range of ANTs
+transformations, initialization, bias correction and masking options.
+We hope that the solutions we provided to the community achieved the
+goal set forth: ``provide reasonable \& consistent registration
+solutions'' that lead to interesting SATA outcomes.
 
 \bibliographystyle{splncs}
 \bibliography{knobsock}
