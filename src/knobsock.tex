@@ -252,22 +252,27 @@ mapping to create the final mapping between subject $n$ and subject $m$.
 The affine and deformable components of the SATA-B maps derive from standard \texttt{antsRegistration} parameters.
  
 \subsection{Dog Leg Multi-Modality Data (SATA-L)}
-Hongzhi Wang led the SATA-L data processing.  ANTs employs both
-modalities provided for SATA-L.  We did not know the relative
-contribution of each modality to registration accuracy so set equal weights
-for each.   The affine and deformable components of the SATA-L maps
-derive from a multivariate extension to standard
+Hongzhi Wang led the SATA-L data processing.  The input modalities are
+bias corrected by N4 \cite{} before further processing (\texttt{normalization.sh}).  ANTs
+registration employs both modalities provided for SATA-L.  We did not
+know the relative contribution of each modality to accuracy so set
+equal weights.  The affine and deformable components of the SATA-L
+maps derive from a multivariate extension to standard
 \texttt{antsRegistration} parameters.  That is, we use the standard
 multi-resolution affine approach combiend with SyN but drive both
 transformation stages by the sum of mutual information across both
-modalities.  More specifically, for affine registration, we optimize: 
+modalities.  More specifically, for affine registration, we optimize:
 \begin{eqnarray}
-MI(  I_1 , J_1( \phi(x) ) ) +
-MI(  I_2(\psi_I(x)) , J_2( \psi_J(\phi(x)) ) ) \notag \\ 
+w_1 MI(  I_1 , J_1( \phi(x) ) ) +
+w_2 MI(  I_2(\psi_I(x)) , J_2( \psi_J(\phi(x)) ) ) \notag \\ 
 \text{Subject to:}~\phi \in Diff_\text{Affine},
 \end{eqnarray}
-where $\psi_J$ maps $J_2$ to $J_1$ (similarly $\psi_I$).
-A similar model is used for SyN deformable mapping. 
+where $w_1=w_2=0.5$ and $\psi_J$ rigidly maps $J_2$ to $J_1$
+(similarly $\psi_I$).  The script \texttt{align.sh} shows how to
+compute $\psi$.  We use a similar model for SyN deformable mapping (\texttt{registerPairsMod.sh}).  Note that
+\texttt{antsRegistration} allows initial mappings to be provided thus
+reducing accumulation of interpolation error.  Five percent regular
+subsampling of the joint intensities estimates the mutual information.
 % FIXME --- are $I_1$ and $I_2$ in alignment?
 
 \subsection{CAP Cardiac Data (SATA-C)}
