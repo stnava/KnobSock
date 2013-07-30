@@ -150,6 +150,56 @@
   timestamp = {2012.01.30}
 }
 
+@ARTICLE{Avants2011a,
+  author = {Avants, Brian B. and Tustison, Nicholas J. and Wu, Jue and Cook,
+	Philip A. and Gee, James C.},
+  title = {An open source multivariate framework for n-tissue segmentation with
+	evaluation on public data.},
+  journal = {Neuroinformatics},
+  year = {2011},
+  volume = {9},
+  pages = {381--400},
+  number = {4},
+  month = {Dec},
+  __markedentry = {[stnava:]},
+  abstract = {We introduce Atropos, an ITK-based multivariate n-class open source
+	segmentation algorithm distributed with ANTs ( http://www.picsl.upenn.edu/ANTs).
+	The Bayesian formulation of the segmentation problem is solved using
+	the Expectation Maximization (EM) algorithm with the modeling of
+	the class intensities based on either parametric or non-parametric
+	finite mixtures. Atropos is capable of incorporating spatial prior
+	probability maps (sparse), prior label maps and/or Markov Random
+	Field (MRF) modeling. Atropos has also been efficiently implemented
+	to handle large quantities of possible labelings (in the experimental
+	section, we use up to 69 classes) with a minimal memory footprint.
+	This work describes the technical and implementation aspects of Atropos
+	and evaluates its performance on two different ground-truth datasets.
+	First, we use the BrainWeb dataset from Montreal Neurological Institute
+	to evaluate three-tissue segmentation performance via (1) K-means
+	segmentation without use of template data; (2) MRF segmentation with
+	initialization by prior probability maps derived from a group template;
+	(3) Prior-based segmentation with use of spatial prior probability
+	maps derived from a group template. We also evaluate Atropos performance
+	by using spatial priors to drive a 69-class EM segmentation problem
+	derived from the Hammers atlas from University College London. These
+	evaluation studies, combined with illustrative examples that exercise
+	Atropos options, demonstrate both performance and wide applicability
+	of this new platform-independent open source segmentation tool.},
+  doi = {10.1007/s12021-011-9109-y},
+  institution = {Penn Image Computing and Science Laboratory, University of Pennsylvania,
+	3600 Market Street, Suite 370, Philadelphia, PA 19104, USA. stnava@gmail.com},
+  keywords = {Access to Information; Algorithms; Bayes Theorem; Databases, Factual,
+	standards; Humans; Image Processing, Computer-Assisted, methods;
+	Internet, standards; Magnetic Resonance Imaging, methods; Models,
+	Statistical; Pattern Recognition, Automated, methods; Software, standards},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pmid = {21373993},
+  timestamp = {2013.07.30},
+  url = {http://dx.doi.org/10.1007/s12021-011-9109-y}
+}
+
 @ARTICLE{Badran1991,
   author = {Badran, A. K. and Fisher, A. C. and Durrani, T. S. and Paul, J. P.},
   title = {An automatic matching technique for patient alignment.},
@@ -662,7 +712,6 @@
   volume = {54},
   pages = {93--98},
   number = {1},
-  __markedentry = {[stnava:]},
   abstract = {This study used kilovoltage (kV) cone beam computed tomography (CBCT)
 	imaging to characterize canine intrafractional prostate motion during
 	hypofractionated stereotactic radiotherapy treatment. Serial CBCT
@@ -1244,6 +1293,64 @@
   timestamp = {2012.01.30http://dx.doi.org/10.1109/42.796284}
 }
 
+@ARTICLE{Shattuck2008,
+  author = {Shattuck, David W. and Mirza, Mubeena and Adisetiyo, Vitria and Hojatkashani,
+	Cornelius and Salamon, Georges and Narr, Katherine L. and Poldrack,
+	Russell A. and Bilder, Robert M. and Toga, Arthur W.},
+  title = {Construction of a 3D probabilistic atlas of human cortical structures.},
+  journal = {Neuroimage},
+  year = {2008},
+  volume = {39},
+  pages = {1064--1080},
+  number = {3},
+  month = {Feb},
+  __markedentry = {[stnava:6]},
+  abstract = {We describe the construction of a digital brain atlas composed of
+	data from manually delineated MRI data. A total of 56 structures
+	were labeled in MRI of 40 healthy, normal volunteers. This labeling
+	was performed according to a set of protocols developed for this
+	project. Pairs of raters were assigned to each structure and trained
+	on the protocol for that structure. Each rater pair was tested for
+	concordance on 6 of the 40 brains; once they had achieved reliability
+	standards, they divided the task of delineating the remaining 34
+	brains. The data were then spatially normalized to well-known templates
+	using 3 popular algorithms: AIR5.2.5's nonlinear warp (Woods et al.,
+	1998) paired with the ICBM452 Warp 5 atlas (Rex et al., 2003), FSL's
+	FLIRT (Smith et al., 2004) was paired with its own template, a skull-stripped
+	version of the ICBM152 T1 average; and SPM5's unified segmentation
+	method (Ashburner and Friston, 2005) was paired with its canonical
+	brain, the whole head ICBM152 T1 average. We thus produced 3 variants
+	of our atlas, where each was constructed from 40 representative samples
+	of a data processing stream that one might use for analysis. For
+	each normalization algorithm, the individual structure delineations
+	were then resampled according to the computed transformations. We
+	next computed averages at each voxel location to estimate the probability
+	of that voxel belonging to each of the 56 structures. Each version
+	of the atlas contains, for every voxel, probability densities for
+	each region, thus providing a resource for automated probabilistic
+	labeling of external data types registered into standard spaces;
+	we also computed average intensity images and tissue density maps
+	based on the three methods and target spaces. These atlases will
+	serve as a resource for diverse applications including meta-analysis
+	of functional and structural imaging data and other bioinformatics
+	applications where display of arbitrary labels in probabilistically
+	defined anatomic space will facilitate both knowledge-based development
+	and visualization of findings from multiple disciplines.},
+  doi = {10.1016/j.neuroimage.2007.09.031},
+  institution = {RB1, Suite 225, Los Angeles, CA 90095, USA. shattuck@loni.ucla.edu},
+  keywords = {Adolescent; Adult; Algorithms; Atlases as Topic; Brain Mapping; Cerebral
+	Cortex, anatomy /\&/ histology/physiology; Echo-Planar Imaging; Humans;
+	Image Processing, Computer-Assisted; Likelihood Functions; Models,
+	Statistical; Nonlinear Dynamics; Observer Variation; Reference Values},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pii = {S1053-8119(07)00809-9},
+  pmid = {18037310},
+  timestamp = {2013.07.30},
+  url = {http://dx.doi.org/10.1016/j.neuroimage.2007.09.031}
+}
+
 @ARTICLE{Shelton2005,
   author = {Shelton, Damion and Stetten, George and Aylward, Stephen and Ibáñez,
 	Luis and Cois, Aaron and Stewart, Charles},
@@ -1327,6 +1434,47 @@
   owner = {stnava},
   pmid = {21274590},
   timestamp = {2012.01.30http://dx.doi.org/10.1007/s10278-011-9362-5}
+}
+
+@ARTICLE{Tustison2010,
+  author = {Tustison, Nicholas J. and Avants, Brian B. and Cook, Philip A. and
+	Zheng, Yuanjie and Egan, Alexander and Yushkevich, Paul A. and Gee,
+	James C.},
+  title = {N4ITK: improved N3 bias correction.},
+  journal = {IEEE Trans Med Imaging},
+  year = {2010},
+  volume = {29},
+  pages = {1310--1320},
+  number = {6},
+  month = {Jun},
+  abstract = {A variant of the popular nonparametric nonuniform intensity normalization
+	(N3) algorithm is proposed for bias field correction. Given the superb
+	performance of N3 and its public availability, it has been the subject
+	of several evaluation studies. These studies have demonstrated the
+	importance of certain parameters associated with the B-spline least-squares
+	fitting. We propose the substitution of a recently developed fast
+	and robust B-spline approximation routine and a modified hierarchical
+	optimization scheme for improved bias field correction over the original
+	N3 algorithm. Similar to the N3 algorithm, we also make the source
+	code, testing, and technical documentation of our contribution, which
+	we denote as "N4ITK," available to the public through the Insight
+	Toolkit of the National Institutes of Health. Performance assessment
+	is demonstrated using simulated data from the publicly available
+	Brainweb database, hyperpolarized (3)He lung image data, and 9.4T
+	postmortem hippocampus data.},
+  doi = {10.1109/TMI.2010.2046908},
+  institution = {Department of Radiology, University of Pennsylvania, Philadelphia,
+	PA 19140, USA. ntustison@wustl.edu},
+  keywords = {Algorithms; Artifacts; Brain, anatomy /\&/ histology; Humans; Image
+	Enhancement, methods; Image Interpretation, Computer-Assisted, methods;
+	Magnetic Resonance Imaging, methods; Reproducibility of Results;
+	Sensitivity and Specificity},
+  language = {eng},
+  medline-pst = {ppublish},
+  owner = {stnava},
+  pmid = {20378467},
+  timestamp = {2013.07.30},
+  url = {http://dx.doi.org/10.1109/TMI.2010.2046908}
 }
 
 @ARTICLE{Venot1984,
@@ -1442,7 +1590,6 @@
   year = {2013},
   volume = {2013},
   pages = {728624},
-  __markedentry = {[stnava:6]},
   abstract = {The objectives of the following research were to evaluate the utility
 	of a deformable image registration technique known as hyperelastic
 	warping for the measurement of local strains in the left ventricle
