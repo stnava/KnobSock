@@ -69,7 +69,9 @@ a<-read.csv('./data/similarityMeasuresCC.csv')
 n<-3 ; a[(46*(n-1)+1):(46*(n)),]
 amat<-matrix(a[,2],nrow=46)
 amat<-amat[1:44,]
+pdf('figs/diencephalon_perf.pdf')
 stars( t(amat),draw.segments = TRUE,main='Diencephalon Performance Variation',full=F)
+dev.off()
 pvs<-rep( NA, ncol(amat) )
 for ( r in 1:ncol(amat) )
   {
@@ -79,4 +81,6 @@ for ( r in 1:ncol(amat) )
 #  hist( mm )
 #  print( sf.test(mm) )
   }
-print( sum( p.adjust( pvs , method='BH') ) )
+print( sum( p.adjust( pvs , method='BH')  < 0.05 ) )
+
+
