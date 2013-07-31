@@ -66,15 +66,15 @@
 \vspace{-0.1in}
 \title{Standardized Registration Methods for the SATA Challenge Datasets}
 \author{Brian B. Avants$^1$, Nicholas J. Tustison$^2$, Hongzhi
-  Wang$^1$, Andrew J. Asman$^3$ \\and the
-  $^5$\href{http://www.insightsoftwareconsortium.org/}{Insight
-    Software Consortium}}
+  Wang$^1$, Andrew J. Asman$^3$, Bennett A. Landman$^3$ \\and the
+  \href{http://www.insightsoftwareconsortium.org/}{Insight
+    Software Consortium}$^4$}
 \institute{$^1$Penn Image Computing and Science Lab \\ Dept. of Radiology \\University of
   Pennsylvania, Philadelphia, PA, 19104\\ 
   $^2$Dept. of Radiology and Medical Imaging, \\ University of Virginia,
   Charlottesville, VA 22903\\
-Electrical Engineering, Vanderbilt University, Nashville, TN, USA 37235\\
- $^5$\href{http://www.insightsoftwareconsortium.org/}{http://www.insightsoftwareconsortium.org/}}
+$^3$Electrical Engineering, Vanderbilt University, Nashville, TN, USA 37235\\
+ $^4$\href{http://www.insightsoftwareconsortium.org/}{http://www.insightsoftwareconsortium.org/}}
 \maketitle              
 \begin{abstract}
 The 2012 Segmentation: Algorithms, Theory and Applications (SATA)
@@ -202,7 +202,7 @@ opportunities afforded by this diverse collection of images.
 
 \section{Methods} Three MRI datasets constitute the driving biological
 problems for the 2013 challenge: T1-weighted whole head images of the
-diencephalon (mid-brain), multi-modality T1 and T2 canine leg images
+diencephalon (mid-brain), multi-modality T2w and T2FS canine leg images
 and a 4D cardiac atlas dataset.  The SATA organizers requested that we
 provide transformed label sets and intensity images for all
 training$\leftrightarrow$testing and training$\leftrightarrow$training
@@ -253,7 +253,7 @@ avoid explicitly computing $\approx$1,600 image registration
 instances, as shown in Figure~\ref{fig:Bmethods}.  As was shown in previous work (technical report), this
 strategy improves upon single template labeling while approaching (not
 equaling) the more computationally expensive all-pairs
-registration required by standard MASR.
+registration required by standard MASR.  
 
 We first derive a custom whole-head template for this dataset and
 extract the template cerebrum using MASR and LPBA40 labels \cite{Shattuck2008}.
@@ -266,7 +266,8 @@ mapping composes with the inverse of the subject $m$ to template
 mapping to create the final mapping between subject $n$ and subject $m$.
 The affine and deformable components of the SATA-B maps derive from
 standard \texttt{antsRegistration} parameters.  The template is
-available in the \texttt{data/SATA-B-Template/} directory.
+available in the \texttt{data/SATA-B-Template/} directory.  Similarity
+metric summaries of performance for each subject is in Figure~\ref{fig:DIEvar}.
  
 \subsection{Dog Leg Multi-Modality Data (SATA-L)}
 \begin{figure}[t]
@@ -354,6 +355,16 @@ registration focus improves robustness to extra-cardiac features.}
 
 \begin{figure}[t]
  \centering 
+  \includegraphics[width=3.in]{../figs/diencephalon_perf.pdf}
+ \caption{We use urchin plots to visualize pairwise registration for
+   diencephalon data.  The performance is more uniform in comparison
+   to CAP data.  The distribution of the correlation metrics exhibited
+ gaussian structure.   See the Figure~\ref{fig:CAPvar} caption for more explanation.}
+ \label{fig:DIEvar}
+\end{figure}
+
+\begin{figure}[t]
+ \centering 
   \includegraphics[width=5in]{../figs/spider_CAP.pdf}
  \caption{We use urchin plots to visualize pairwise registration
    performance for CAP data.  We quantified variability in
@@ -400,7 +411,7 @@ modalities jointly improve registration results.  Based on a
 comparison of single-modality registration and dual modality
 registration in the training data, we found the dual modality
 similarity metric appeared to increase performance.  We expect that
-Dice overlap will be reasonable ($\approx 0.8$ overall as estimated by
+Dice overlap will be reasonable ($\approx 0.7$ overall as estimated by
 H.W.) for the canine leg dataset.
 
 \subsection{CAP Cardiac Data (SATA-C)}

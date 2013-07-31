@@ -53,13 +53,30 @@ print( pvct / length(all )*100 )
 labs<-c(paste("E",c(1:length(test))),paste("R",c(1:length(train))))
 sublabs<-labs
 sublabs[ (1:(length(labs)/2))*2 ]<-NA
-pdf('spider_CAP.pdf')
-palette(rainbow(12, s = 0.6, v = 0.75))
+#pdf('spider_CAP.pdf')
+# palette(rainbow(12, s = 0.6, v = 0.75))
 stars(matres,draw.segments = TRUE,main='CAP Performance Variation',labels=sublabs,full=F)
 # stars(matres,draw.segments = TRUE,frame.plot=TRUE,scale = TRUE, radius  =  FALSE,main='Performance Variation')
-dev.off()
+#dev.off()
 #
 # > sum(p.adjust(pvs,method='BH') < 0.05 )
 # [1] 21
 # a minimum of 13.54839 % had a highly non-gaussian similarity distribution 
 #
+
+
+a<-read.csv('./data/similarityMeasuresCC.csv')
+n<-3 ; a[(46*(n-1)+1):(46*(n)),]
+amat<-matrix(a[,2],nrow=46)
+amat<-amat[1:44,]
+stars( t(amat),draw.segments = TRUE,main='Diencephalon Performance Variation',full=F)
+pvs<-rep( NA, ncol(amat) )
+for ( r in 1:ncol(amat) )
+  {
+  mm<-amat[,r]
+  mm<-mm[1:( length(mm) - 2 ) ]
+  pvs[r]<-sf.test(mm)$p.value
+#  hist( mm )
+#  print( sf.test(mm) )
+  }
+print( sum( p.adjust( pvs , method='BH') ) )
